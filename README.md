@@ -1,2 +1,2 @@
 # cafe-mundo
-itio web educativo sobre el mundo del café - Segunda Evaluación Parcial
+Sitio web educativo sobre el mundo del café - Segunda Evaluación Parcial
