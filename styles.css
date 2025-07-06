@@ -1,0 +1,898 @@
+/* === VARIABLES CSS === */
+:root {
+    --primary-color: #8B4513;
+    --secondary-color: #D2691E;
+    --accent-color: #F4A460;
+    --text-color: #333;
+    --bg-color: #fff;
+    --card-bg: #fff;
+    --navbar-bg: #fff;
+    --footer-bg: #2c3e50;
+    --border-color: #dee2e6;
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --primary-color: #D2691E;
+    --secondary-color: #F4A460;
+    --accent-color: #8B4513;
+    --text-color: #e9ecef;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --navbar-bg: #1a1a1a;
+    --footer-bg: #0d1117;
+    --border-color: #404040;
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+/* === ESTILOS GENERALES === */
+* {
+    transition: var(--transition);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 76px;
+}
+
+/* Asegurar que todos los headings usen la variable de color */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.display-1, .display-2, .display-3, .display-4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+}
+
+/* Asegurar que los párrafos usen la variable de color */
+p {
+    color: var(--text-color);
+}
+
+/* === NAVBAR === */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    margin-left: 0.5rem;
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::before {
+    width: 80%;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+    transform: translateY(-2px);
+}
+
+/* === DARK MODE TOGGLE === */
+.dark-mode-toggle {
+    position: relative;
+}
+
+#darkModeToggle {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+    border-radius: 25px;
+    min-width: 120px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#darkModeToggle:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
+}
+
+#darkModeToggle i {
+    margin-right: 0.5rem;
+}
+
+/* === HERO SECTION === */
+.hero-section {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(139,69,19,0.4) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: fadeInUp 1s ease-out;
+    color: white !important;
+}
+
+.hero-content p {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+    color: white !important;
+}
+
+.hero-content .btn {
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CARDS === */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.card-title {
+    color: var(--text-color);
+}
+
+.card-text {
+    color: var(--text-color);
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
+}
+
+.hover-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* === BUTTONS === */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 25px;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    transition: var(--transition);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(139,69,19,0.3);
+    color: white;
+}
+
+.hover-effect:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0.7rem 1.5rem rgba(0,0,0,0.2);
+}
+
+/* === BACKGROUND SECTIONS === */
+.bg-light {
+    background-color: var(--card-bg) !important;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+/* === FORCE WHITE TEXT ON ALL COLORED BACKGROUNDS === */
+.bg-primary h1,
+.bg-primary h2, 
+.bg-primary h3,
+.bg-primary h4,
+.bg-primary h5,
+.bg-primary h6,
+.bg-primary .display-1,
+.bg-primary .display-2,
+.bg-primary .display-3,
+.bg-primary .display-4,
+.bg-primary p,
+.bg-primary .lead,
+.bg-success h1,
+.bg-success h2,
+.bg-success h3,
+.bg-success h4,
+.bg-success h5,
+.bg-success h6,
+.bg-success .display-1,
+.bg-success .display-2,
+.bg-success .display-3,
+.bg-success .display-4,
+.bg-success p,
+.bg-success .lead,
+.bg-warning h1,
+.bg-warning h2,
+.bg-warning h3,
+.bg-warning h4,
+.bg-warning h5,
+.bg-warning h6,
+.bg-warning .display-1,
+.bg-warning .display-2,
+.bg-warning .display-3,
+.bg-warning .display-4,
+.bg-warning p,
+.bg-warning .lead,
+.bg-info h1,
+.bg-info h2,
+.bg-info h3,
+.bg-info h4,
+.bg-info h5,
+.bg-info h6,
+.bg-info .display-1,
+.bg-info .display-2,
+.bg-info .display-3,
+.bg-info .display-4,
+.bg-info p,
+.bg-info .lead,
+.bg-danger h1,
+.bg-danger h2,
+.bg-danger h3,
+.bg-danger h4,
+.bg-danger h5,
+.bg-danger h6,
+.bg-danger .display-1,
+.bg-danger .display-2,
+.bg-danger .display-3,
+.bg-danger .display-4,
+.bg-danger p,
+.bg-danger .lead {
+    color: white !important;
+}
+
+/* Force white text in hero sections */
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content h4,
+.hero-content h5,
+.hero-content h6,
+.hero-content p,
+.hero-content .lead {
+    color: white !important;
+}
+
+/* Force white text in header sections (colored backgrounds) */
+section.py-5.bg-primary h1,
+section.py-5.bg-primary h2,
+section.py-5.bg-primary h3,
+section.py-5.bg-primary h4,
+section.py-5.bg-primary h5,
+section.py-5.bg-primary h6,
+section.py-5.bg-primary p,
+section.py-5.bg-primary .lead,
+section.py-5.bg-success h1,
+section.py-5.bg-success h2,
+section.py-5.bg-success h3,
+section.py-5.bg-success h4,
+section.py-5.bg-success h5,
+section.py-5.bg-success h6,
+section.py-5.bg-success p,
+section.py-5.bg-success .lead,
+section.py-5.bg-warning h1,
+section.py-5.bg-warning h2,
+section.py-5.bg-warning h3,
+section.py-5.bg-warning h4,
+section.py-5.bg-warning h5,
+section.py-5.bg-warning h6,
+section.py-5.bg-warning p,
+section.py-5.bg-warning .lead,
+section.py-5.bg-info h1,
+section.py-5.bg-info h2,
+section.py-5.bg-info h3,
+section.py-5.bg-info h4,
+section.py-5.bg-info h5,
+section.py-5.bg-info h6,
+section.py-5.bg-info p,
+section.py-5.bg-info .lead,
+section.py-5.bg-danger h1,
+section.py-5.bg-danger h2,
+section.py-5.bg-danger h3,
+section.py-5.bg-danger h4,
+section.py-5.bg-danger h5,
+section.py-5.bg-danger h6,
+section.py-5.bg-danger p,
+section.py-5.bg-danger .lead {
+    color: white !important;
+}
+
+/* === HOVER EFFECTS === */
+.hover-item {
+    transition: var(--transition);
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.hover-item:hover {
+    transform: translateY(-5px);
+    color: var(--primary-color);
+}
+
+.hover-zoom {
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+}
+
+.hover-link {
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.hover-link:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+}
+
+.hover-social {
+    font-size: 1.5rem;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.hover-social:hover {
+    color: var(--primary-color) !important;
+    transform: translateY(-3px) scale(1.2);
+}
+
+/* === BREWING ICONS === */
+.brewing-icon {
+    transition: var(--transition);
+}
+
+.brewing-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* === LIST GROUPS === */
+.list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.list-group-numbered .list-group-item::before {
+    background-color: var(--primary-color);
+}
+
+/* === MODALS === */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-title {
+    color: var(--text-color);
+}
+
+.modal-body {
+    color: var(--text-color);
+}
+
+.modal-body h4, .modal-body h5, .modal-body h6 {
+    color: var(--text-color);
+}
+
+.modal-body p {
+    color: var(--text-color);
+}
+
+.modal-body ul li {
+    color: var(--text-color);
+}
+
+.modal-body ol li {
+    color: var(--text-color);
+}
+
+/* === FOOTER === */
+footer {
+    background-color: var(--footer-bg) !important;
+}
+
+.social-links a {
+    display: inline-block;
+}
+
+/* === CAROUSEL === */
+.carousel-indicators button {
+    background-color: var(--primary-color);
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(139,69,19,0.8);
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+
+    #darkModeToggle {
+        min-width: 100px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .dark-mode-toggle {
+        margin-right: 0.5rem !important;
+    }
+
+    #darkModeToggle {
+        min-width: 90px;
+        font-size: 0.7rem;
+    }
+}
+
+/* === SCROLL BEHAVIOR === */
+html {
+    scroll-behavior: smooth;
+}
+
+/* === UTILITIES === */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* === LOADING ANIMATION === */
+.loading {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.loading.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === CONTACT FORM STYLES === */
+.form-control {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
+}
+
+.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.form-label {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.form-text {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.form-check-label {
+    color: var(--text-color);
+}
+
+/* === IFRAME STYLES === */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* === ARTICLE STYLES === */
+.article-card {
+    transition: var(--transition);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.15);
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* === BREADCRUMB === */
+.breadcrumb {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--primary-color);
+}
+
+.breadcrumb-item a {
+    color: var(--text-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-color);
+}
+
+/* === FORM SELECT === */
+.form-select {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 10px;
+}
+
+.form-select:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
+}
+
+/* === ACCORDION === */
+.accordion-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.accordion-button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
+}
+
+.accordion-body {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* === CONTACT INFO === */
+.contact-info .contact-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.contact-info .contact-item:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+/* === TIMER DISPLAY === */
+.timer-display {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+}
+
+/* === SEARCH INPUT === */
+#searchInput {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+#searchInput:focus {
+    border-color: rgba(255,255,255,0.8);
+    box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.25);
+    color: white !important;
+    background-color: rgba(255,255,255,0.15) !important;
+}
+
+#searchInput::placeholder {
+    color: rgba(255,255,255,0.8) !important;
+}
+
+/* Search button styling */
+.bg-primary .btn-light {
+    color: var(--primary-color) !important;
+    background-color: white !important;
+    border-color: white !important;
+}
+
+.bg-primary .btn-light:hover {
+    color: white !important;
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+/* === BADGE COLORS === */
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.badge.bg-success {
+    background-color: #198754 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.badge.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #000 !important;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+/* === SPECIAL EFFECTS === */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* === FOOTER SOCIAL LINKS === */
+.social-links a {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* === NAVBAR TOGGLER === */
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28139, 69, 19, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28210, 105, 30, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* === ALERTS === */
+.alert {
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.alert-info {
+    background-color: rgba(13, 202, 240, 0.1);
+    border-color: rgba(13, 202, 240, 0.2);
+    color: var(--text-color);
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-color: rgba(255, 193, 7, 0.2);
+    color: var(--text-color);
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.1);
+    border-color: rgba(25, 135, 84, 0.2);
+    color: var(--text-color);
+}
+
+/* === TABLE STYLES === */
+table {
+    color: var(--text-color);
+}
+
+th {
+    color: var(--text-color);
+}
+
+td {
+    color: var(--text-color);
+}
+
+/* === LEAD TEXT === */
+.lead {
+    color: var(--text-color);
+}
+
+/* === SMALL TEXT === */
+small, .small {
+    color: var(--text-color);
+    opacity: 0.8;
+}

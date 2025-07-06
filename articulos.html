@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artículos y noticias sobre el mundo del café: historia, variedades, métodos de preparación y beneficios para la salud.">
+    <meta name="keywords" content="artículos café, noticias café, historia café, métodos preparación, espresso, barista">
+    <meta name="author" content="Café Mundo">
+    <meta name="robots" content="index, follow">
+    
+    <title>Artículos y Noticias - Café Mundo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cup-hot-fill text-primary"></i>
+                <span class="logo-text">Café Mundo</span>
+            </a>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="dark-mode-toggle me-3">
+                <button id="darkModeToggle" class="btn btn-outline-secondary">
+                    <i class="bi bi-moon-fill"></i>
+                    <span class="mode-text">Modo Oscuro</span>
+                </button>
+            </div>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="articulos.html">Artículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="enlaces.html">Enlaces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactos.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="hover-link"><i class="bi bi-house-fill me-1"></i>Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Artículos y Noticias</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Header Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4">
+                <i class="bi bi-book-fill me-3"></i>Artículos y Noticias
+            </h1>
+            <p class="lead mb-4">Descubre el fascinante mundo del café a través de nuestros artículos especializados</p>
+            
+            <!-- Search Bar -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control form-control-lg" 
+                               placeholder="Buscar en Google..." onkeyup="searchArticles()">
+                        <button class="btn btn-light" type="button" onclick="searchArticles()">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="searchResults" class="mt-3"></div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow-lg hover-card">
+                        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             class="card-img-top" alt="Historia del café" style="height: 400px; object-fit: cover;">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Artículo Destacado</span>
+                            <h2 class="card-title">El Viaje Épico del Café: De Leyendas Antiguas a la Cultura Global</h2>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-2"></i>6 de Julio, 2025
+                                <span class="mx-2">•</span>
+                                <i class="bi bi-person me-2"></i>Café Mundo
+                                <span class="mx-2">•</span>
+                                <i class="bi bi-clock me-2"></i>8 min de lectura
+                            </p>
+                            <p class="card-text">La historia del café comienza con una leyenda cautivadora: la de Kaldi, un pastor de cabras etíope del siglo IX que observó un comportamiento inusualmente enérgico en su rebaño después de consumir bayas rojas de un arbusto desconocido...</p>
+                            <button class="btn btn-primary hover-effect" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                <i class="bi bi-book-open me-2"></i>Leer Artículo Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-4 fw-bold mb-5">Todos los Artículos</h2>
+            
+            <div class="row g-4">
+                <!-- Article 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Variedades de café">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Variedades</span>
+                            <h5 class="card-title">Arábica vs Robusta: Las Estrellas del Café</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>5 Jul 2025
+                            </p>
+                            <p class="card-text">Descubre las principales diferencias entre las dos variedades más importantes del café mundial y cómo cada una aporta características únicas a tu taza.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#varietiesModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Métodos de preparación">
+                        <div class="card-body">
+                            <span class="badge bg-warning mb-2">Preparación</span>
+                            <h5 class="card-title">El Arte del Espresso: Dominando los Cuatro Pilares</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>4 Jul 2025
+                            </p>
+                            <p class="card-text">Aprende a controlar la dosis, molienda, rendimiento y tiempo para lograr el espresso perfecto. Una guía completa para baristas.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#espressoModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Procesamiento del café">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Procesamiento</span>
+                            <h5 class="card-title">Del Cereza al Grano: Métodos de Procesamiento</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>3 Jul 2025
+                            </p>
+                            <p class="card-text">Explora cómo los métodos lavado, natural y honey transforman el sabor del café desde la cosecha hasta tu taza.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#processingModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Beneficios del café">
+                        <div class="card-body">
+                            <span class="badge bg-danger mb-2">Salud</span>
+                            <h5 class="card-title">Beneficios y Riesgos del Café para la Salud</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>2 Jul 2025
+                            </p>
+                            <p class="card-text">Una análisis completo de cómo el café afecta tu salud: desde sus beneficios antioxidantes hasta las consideraciones del consumo responsable.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#healthModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Tostado del café">
+                        <div class="card-body">
+                            <span class="badge bg-secondary mb-2">Tostado</span>
+                            <h5 class="card-title">El Arte del Tostado: Perfiles de Sabor</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>1 Jul 2025
+                            </p>
+                            <p class="card-text">Comprende cómo los tuestes claro, medio y oscuro moldean el sabor final de tu café y cuál elegir según tus preferencias.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#roastingModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow article-card hover-card">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Cata de café">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Cata</span>
+                            <h5 class="card-title">La Rueda de Sabores: Guía de Cata</h5>
+                            <p class="article-meta mb-3">
+                                <i class="bi bi-calendar3 me-1"></i>30 Jun 2025
+                            </p>
+                            <p class="card-text">Aprende a identificar y describir los complejos sabores del café utilizando la rueda de sabores profesional.</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <button class="btn btn-outline-primary hover-effect" data-bs-toggle="modal" data-bs-target="#tastingModal">
+                                <i class="bi bi-arrow-right me-1"></i>Leer más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Facts Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h3 class="mb-4">¿Sabías que...?</h3>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card bg-transparent border-light">
+                        <div class="card-body">
+                            <i class="bi bi-lightbulb display-4 mb-3"></i>
+                            <p id="coffeeFactDisplay" class="lead mb-0">El café es la segunda mercancía más comercializada del mundo después del petróleo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-light mt-4 hover-effect" onclick="showRandomTip()">
+                <i class="bi bi-shuffle me-2"></i>Mostrar Otro Dato
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-cup-hot-fill me-2"></i>Café Mundo</h5>
+                    <p>Tu guía completa para explorar el fascinante mundo del café.</p>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Enlaces Útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none hover-link">Inicio</a></li>
+                        <li><a href="articulos.html" class="text-light text-decoration-none hover-link">Artículos</a></li>
+                        <li><a href="enlaces.html" class="text-light text-decoration-none hover-link">Enlaces</a></li>
+                        <li><a href="contactos.html" class="text-light text-decoration-none hover-link">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('facebook')"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('twitter')"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('instagram')"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('whatsapp')"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                    
+                    <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#privacyModal">
+                        <i class="bi bi-shield-check me-2"></i>Políticas de Privacidad
+                    </button>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 Café Mundo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Articles -->
+    
+    <!-- History Modal -->
+    <div class="modal fade" id="historyModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">La Historia Épica del Café</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Historia del café">
+                    
+                    <h4>Los Orígenes Míticos: Kaldi y las Cabras Danzarinas</h4>
+                    <p>La historia del café a menudo comienza con una leyenda cautivadora, la de Kaldi, un pastor de cabras etíope del siglo IX. Se cuenta que Kaldi observó un comportamiento inusualmente enérgico en su rebaño después de que consumieran bayas rojas de un arbusto desconocido.</p>
+                    
+                    <p>Intrigado, el pastor probó las bayas él mismo y experimentó una sensación similar de alerta y vitalidad. Llevó su descubrimiento a un monasterio local, donde un monje, inicialmente, las rechazó como "diabólicas" y las arrojó al fuego.</p>
+                    
+                    <p>Sin embargo, el aroma exquisito que se liberó al quemarse las bayas llevó a los monjes a triturarlas, mezclarlas con agua caliente y adoptar la bebida resultante para mantenerse despiertos durante sus largas oraciones nocturnas.</p>
+                    
+                    <h4>De Etiopía al Mundo: La Expansión del Café</h4>
+                    <p>Desde su probable cuna en Etiopía, el café inició una notable expansión geográfica. Se cree que llegó al norte a través del Mar Rojo, estableciéndose en Yemen en el siglo XV. Fue en Arabia donde los granos de café fueron tostados y molidos por primera vez con sal, de una manera similar a como se preparan hoy en día.</p>
+                    
+                    <p>Para el siglo XVI, la popularidad del café se había extendido por todo el Medio Oriente, incluyendo Persia, Egipto, Siria y Turquía. Un hito crucial fue la apertura de la primera cafetería del mundo en Constantinopla (actual Estambul) en 1475.</p>
+                    
+                    <h4>El Auge de las Cafeterías: "Escuelas de los Sabios"</h4>
+                    <p>Las cafeterías se convirtieron rápidamente en vibrantes centros sociales y culturales, donde la gente acudía no solo para disfrutar del café, sino también para conversar, escuchar música, presenciar actuaciones artísticas, jugar al ajedrez e intercambiar noticias.</p>
+                    
+                    <p>En una época sin las tecnologías de comunicación modernas, estas "Escuelas de los Sabios" se erigieron como epicentros vitales para el intercambio y la recopilación de información.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('facebook')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Varieties Modal -->
+    <div class="modal fade" id="varietiesModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Arábica vs Robusta: Las Estrellas del Café</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Variedades de café">
+                    
+                    <h4>Arábica: La Estrella Suave</h4>
+                    <p>Esta variedad es ampliamente celebrada por su suavidad, dulzura y un perfil de sabor afrutado y aromático. Se le considera el grano de mayor calidad y constituye aproximadamente el 60% de la producción mundial de café.</p>
+                    
+                    <p>Los granos de Arábica prosperan en altitudes elevadas, en regiones como Colombia, Etiopía y Kenia. Su contenido de cafeína es notablemente más bajo, oscilando entre 0.7% y 1.5%, lo que lo hace ideal para quienes buscan una experiencia de café más suave y con menos amargor.</p>
+                    
+                    <h4>Robusta: La Fuerza Intensa</h4>
+                    <p>En contraste, los granos de Robusta son conocidos por su sabor más fuerte, intenso y amargo, con un cuerpo completo. Esta especie es considerablemente más resistente y adaptable, pudiendo cultivarse en altitudes más bajas y en climas más variados.</p>
+                    
+                    <p>Su alto contenido de cafeína, que varía entre 2% y 4%, no solo proporciona un mayor impulso energético, sino que también contribuye a su resistencia natural contra plagas e insectos. Aunque a menudo se asocia con el café instantáneo, el Robusta de alta calidad es muy valorado en mezclas para espresso.</p>
+                    
+                    <h4>Otras Variedades Notables</h4>
+                    <ul>
+                        <li><strong>Liberica:</strong> Menos común, se distingue por un sabor único y terroso.</li>
+                        <li><strong>Excelsa:</strong> Apreciada por su sabor agridulce y su aroma floral.</li>
+                        <li><strong>Geisha:</strong> Una variedad de Arábica que ha alcanzado inmensa popularidad por su excepcional calidad.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('twitter')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Espresso Modal -->
+    <div class="modal fade" id="espressoModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dominando el Arte del Espresso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Espresso">
+                    
+                    <h4>Los Cuatro Pilares del Espresso Perfecto</h4>
+                    <p>Dominar el espresso implica un control preciso de cuatro variables interconectadas:</p>
+                    
+                    <h5>1. Dosis de Café</h5>
+                    <p>Se refiere a la cantidad de café molido utilizada. Típicamente, una dosis para un solo espresso es de alrededor de 7 gramos, mientras que para un doble oscila entre 14 y 20 gramos.</p>
+                    
+                    <h5>2. Grosor de la Molienda</h5>
+                    <p>Para el espresso, la molienda debe ser extremadamente fina, similar a la harina. El tamaño es el principal regulador del tiempo de extracción.</p>
+                    
+                    <h5>3. Rendimiento (Peso en Líquido)</h5>
+                    <p>Es el peso del espresso final en la taza en relación con el peso del café molido utilizado. Medir por peso es más preciso que por volumen.</p>
+                    
+                    <h5>4. Tiempo de Extracción</h5>
+                    <p>Para un espresso, el tiempo ideal suele ser entre 25 y 30 segundos. Este timing es crucial para lograr el equilibrio perfecto de sabores.</p>
+                    
+                    <h4>Ratios de Espresso</h4>
+                    <ul>
+                        <li><strong>Ristretto:</strong> 1:1 a 1:1.5 (muy concentrado)</li>
+                        <li><strong>Espresso tradicional:</strong> 1:2 a 1:2.5 (equilibrado)</li>
+                        <li><strong>Lungo:</strong> 1:3 (más diluido)</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('whatsapp')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div class="modal fade" id="processingModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Métodos de Procesamiento del Café</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Procesamiento de café">
+                    
+                    <h4>Del Cereza al Grano: Transformando el Sabor</h4>
+                    <p>El proceso de transformar la cereza de café recién recolectada en el grano verde listo para tostar define hasta el 60% del sabor final de la bebida.</p>
+                    
+                    <h5>Proceso Lavado (Wet Process)</h5>
+                    <p>Este método produce cafés con perfiles de sabor limpios, brillantes y una acidez pronunciada. El proceso inicia con el despulpado de las cerezas para remover la piel y la mayor parte de la pulpa.</p>
+                    
+                    <h5>Proceso Natural (Dry Process)</h5>
+                    <p>Considerado uno de los métodos más antiguos, las cerezas de café se secan enteras, con la piel y la pulpa aún adheridas al grano. Esto imparte un perfil de sabor más intenso y afrutado.</p>
+                    
+                    <h5>Proceso Honey</h5>
+                    <p>Un método intermedio que busca combinar las mejores cualidades de los procesos lavado y natural. Se deja una cantidad específica de mucílago adherida al grano durante el secado.</p>
+                    
+                    <h4>Impacto en el Sabor</h4>
+                    <ul>
+                        <li><strong>Lavado:</strong> Sabores limpios, acidez brillante, notas florales</li>
+                        <li><strong>Natural:</strong> Sabores intensos, dulzura, notas frutales</li>
+                        <li><strong>Honey:</strong> Equilibrio entre limpieza y dulzura natural</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('facebook')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Modal -->
+    <div class="modal fade" id="healthModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Café y Salud: Beneficios y Consideraciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Beneficios del café">
+                    
+                    <h4>Beneficios para la Salud</h4>
+                    <p>El café, consumido con moderación, ofrece una serie de beneficios para la salud:</p>
+                    
+                    <ul>
+                        <li><strong>Estimulante cognitivo:</strong> Mejora la alerta, energía y concentración</li>
+                        <li><strong>Rico en antioxidantes:</strong> Contiene polifenoles que protegen las células</li>
+                        <li><strong>Mejora del rendimiento físico:</strong> Reduce la fatiga y mantiene el estado de alerta</li>
+                        <li><strong>Protección contra enfermedades:</strong> Puede reducir el riesgo de ciertas enfermedades crónicas</li>
+                    </ul>
+                    
+                    <h4>Consideraciones y Riesgos</h4>
+                    <p>El consumo excesivo puede tener efectos adversos:</p>
+                    
+                    <ul>
+                        <li><strong>Trastornos del sueño:</strong> La cafeína puede permanecer activa hasta 6 horas</li>
+                        <li><strong>Ansiedad:</strong> Puede provocar nerviosismo e irritabilidad</li>
+                        <li><strong>Problemas cardiovasculares:</strong> Aumento de presión arterial y frecuencia cardíaca</li>
+                        <li><strong>Malestar estomacal:</strong> Puede aumentar la acidez gástrica</li>
+                    </ul>
+                    
+                    <h4>Recomendaciones</h4>
+                    <p>Para adultos sanos, se recomienda un límite de hasta 400 mg de cafeína por día. Durante el embarazo, no se debe superar los 200 mg diarios.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('twitter')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roasting Modal -->
+    <div class="modal fade" id="roastingModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">El Arte del Tostado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Tostado de café">
+                    
+                    <h4>Transformación por Calor</h4>
+                    <p>El tostado es un arte transformador que convierte los granos de café verdes en los granos aromáticos y llenos de sabor que conocemos.</p>
+                    
+                    <h5>Tueste Claro (Canela)</h5>
+                    <p>Los granos se someten a la menor duración de tostado, conservando un color marrón claro sin aceites visibles. Este tueste suave preserva los sabores naturales del origen del café, resultando en una taza con acidez pronunciada y matices herbales, frutales y florales.</p>
+                    
+                    <h5>Tueste Medio</h5>
+                    <p>Busca un equilibrio armonioso entre los sabores de origen del café y aquellos desarrollados durante el tostado. Los granos ofrecen un sabor más rico y un cuerpo más completo, con una acidez moderada y notas de frutos secos, caramelo y chocolate.</p>
+                    
+                    <h5>Tueste Oscuro</h5>
+                    <p>Los granos se tuestan durante el período más prolongado, adquiriendo un color marrón oscuro y una superficie aceitosa. Este tueste desarrolla sabores profundos, robustos y a menudo ahumados, con una acidez reducida y un cuerpo pesado y rico.</p>
+                    
+                    <h4>Fases del Tostado</h4>
+                    <ol>
+                        <li><strong>Secado:</strong> Eliminación de humedad</li>
+                        <li><strong>Amarillamiento:</strong> Cambio de color y desarrollo del aroma</li>
+                        <li><strong>Primer Crack:</strong> Expansión de los granos y liberación de compuestos aromáticos</li>
+                        <li><strong>Desarrollo:</strong> Formación de sabores complejos</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('whatsapp')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tasting Modal -->
+    <div class="modal fade" id="tastingModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">La Rueda de Sabores del Café</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded mb-4" alt="Cata de café">
+                    
+                    <h4>El Arte de la Cata</h4>
+                    <p>La cata de café es un análisis sensorial que busca descubrir y estudiar todas las propiedades organolépticas de esta bebida a través de los sentidos del gusto y el olfato.</p>
+                    
+                    <h5>Atributos Clave a Evaluar</h5>
+                    <ul>
+                        <li><strong>Aroma:</strong> Fragancia en seco y aroma con agua</li>
+                        <li><strong>Sabor:</strong> Desarrollo y evolución en la boca</li>
+                        <li><strong>Retrogusto:</strong> Sensación que permanece después de tragar</li>
+                        <li><strong>Cuerpo:</strong> Densidad y sensación táctil en la boca</li>
+                        <li><strong>Acidez:</strong> Brillo y vitalidad que aporta a la taza</li>
+                        <li><strong>Dulzura:</strong> Equilibra la acidez y el amargor</li>
+                    </ul>
+                    
+                    <h4>La Rueda de Sabores</h4>
+                    <p>La Specialty Coffee Association (SCA) creó la Rueda de Sabores del Café para estandarizar la descripción de sabores. Organiza los sabores en categorías amplias (floral, frutal, especiado, a nueces) y luego se despliega en descripciones más específicas.</p>
+                    
+                    <h5>Categorías Principales</h5>
+                    <ul>
+                        <li><strong>Frutales:</strong> Cítricos, bayas, frutas tropicales</li>
+                        <li><strong>Florales:</strong> Rosa, jazmín, lavanda</li>
+                        <li><strong>Dulces:</strong> Chocolate, caramelo, miel</li>
+                        <li><strong>Frutos secos:</strong> Almendra, avellana, nuez</li>
+                        <li><strong>Especiados:</strong> Canela, pimienta, clavo</li>
+                        <li><strong>Vegetales:</strong> Herbales, verdes</li>
+                    </ul>
+                    
+                    <h4>Técnica de Cata</h4>
+                    <ol>
+                        <li>Observar el color y la textura</li>
+                        <li>Inhalar el aroma</li>
+                        <li>Sorber ruidosamente para airear</li>
+                        <li>Distribuir por toda la boca</li>
+                        <li>Identificar sabores y sensaciones</li>
+                        <li>Evaluar el retrogusto</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="shareOnSocial('facebook')">
+                        <i class="bi bi-share me-2"></i>Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-shield-check text-success me-2"></i>
+                        Políticas de Privacidad
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Recopilación de Información</h6>
+                    <p>En Café Mundo, respetamos tu privacidad. Esta página web es únicamente informativa y educativa sobre el mundo del café.</p>
+                    
+                    <h6>Uso de la Información</h6>
+                    <p>No recopilamos información personal de los usuarios. El formulario de contacto utiliza tu cliente de correo local.</p>
+                    
+                    <h6>Cookies</h6>
+                    <p>Utilizamos únicamente cookies técnicas necesarias para el funcionamiento del sitio, como las preferencias del modo oscuro.</p>
+                    
+                    <h6>Enlaces Externos</h6>
+                    <p>Nuestro sitio puede contener enlaces a recursos externos. No nos hacemos responsables de las políticas de privacidad de terceros.</p>
+                    
+                    <h6>Contacto</h6>
+                    <p>Si tienes preguntas sobre estas políticas, puedes contactarnos a través del formulario de contacto.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>

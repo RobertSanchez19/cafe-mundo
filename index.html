@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre el fascinante mundo del café: desde su historia hasta los métodos de preparación perfectos. Guía completa para amantes del café.">
+    <meta name="keywords" content="café, espresso, arábica, robusta, barista, tostado, molienda, preparación, coffee, caffeine">
+    <meta name="author" content="Café Mundo">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Café Mundo - El Viaje Perfecto del Grano a la Taza">
+    <meta property="og:description" content="Explora la cultura del café, aprende técnicas de preparación y descubre los secretos de una taza perfecta.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tu-usuario.github.io/cafe-mundo">
+    <meta property="og:image" content="https://tu-usuario.github.io/cafe-mundo/images/cafe-hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Café Mundo - El Viaje Perfecto del Grano a la Taza">
+    <meta name="twitter:description" content="Explora la cultura del café, aprende técnicas de preparación y descubre los secretos de una taza perfecta.">
+    
+    <title>Café Mundo - El Viaje Perfecto del Grano a la Taza</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-cup-hot-fill text-primary"></i>
+                <span class="logo-text">Café Mundo</span>
+            </a>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="dark-mode-toggle me-3">
+                <button id="darkModeToggle" class="btn btn-outline-secondary">
+                    <i class="bi bi-moon-fill"></i>
+                    <span class="mode-text">Modo Oscuro</span>
+                </button>
+            </div>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Acerca del Café</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#varieties">Variedades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articulos.html">Artículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="enlaces.html">Enlaces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactos.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="hero-overlay">
+                            <div class="container">
+                                <div class="hero-content">
+                                    <h1 class="display-2 fw-bold text-white mb-4">El Viaje Perfecto del Grano a la Taza</h1>
+                                    <p class="lead text-white mb-5">Descubre la fascinante historia y ciencia detrás de cada sorbo de café</p>
+                                    <button class="btn btn-primary btn-lg hover-effect" onclick="showWelcomeModal()">
+                                        <i class="bi bi-cup-hot me-2"></i>Comienza tu Viaje
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="hero-overlay">
+                            <div class="container">
+                                <div class="hero-content">
+                                    <h1 class="display-2 fw-bold text-white mb-4">Maestría en Espresso</h1>
+                                    <p class="lead text-white mb-5">Aprende los secretos de la extracción perfecta</p>
+                                    <a href="#varieties" class="btn btn-outline-light btn-lg hover-effect">
+                                        <i class="bi bi-gear me-2"></i>Explora Técnicas
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="hero-overlay">
+                            <div class="container">
+                                <div class="hero-content">
+                                    <h1 class="display-2 fw-bold text-white mb-4">Cultura Global del Café</h1>
+                                    <p class="lead text-white mb-5">Desde Etiopía hasta tu taza, una historia milenaria</p>
+                                    <a href="articulos.html" class="btn btn-success btn-lg hover-effect">
+                                        <i class="bi bi-globe me-2"></i>Descubre Orígenes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">Más que una Bebida</h2>
+                    <p class="lead">El café es un fenómeno global profundamente arraigado en la historia, la cultura y los rituales diarios de millones de personas.</p>
+                    <p>Su complejidad abarca desde las leyendas de su descubrimiento hasta la intrincada ciencia detrás de cada extracción. Esta plataforma te invita a un viaje fascinante a través del mundo del café.</p>
+                    
+                    <h4 class="mt-4 mb-3">¿Qué Encontrarás Aquí?</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 hover-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Historia y origen del café</li>
+                        <li class="mb-2 hover-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Variedades de granos y procesamiento</li>
+                        <li class="mb-2 hover-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Técnicas de preparación perfecta</li>
+                        <li class="mb-2 hover-item"><i class="bi bi-check-circle-fill text-success me-2"></i>El arte del espresso</li>
+                        <li class="mb-2 hover-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Beneficios para la salud</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Granos de café" class="img-fluid rounded shadow-lg hover-zoom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Varieties Section -->
+    <section id="varieties" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Variedades Principales</h2>
+                <p class="lead">Conoce las diferencias entre Arábica y Robusta</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow hover-card">
+                        <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="Café Arábica">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary">
+                                <i class="bi bi-star-fill me-2"></i>Arábica
+                            </h3>
+                            <p class="card-text">Celebrado por su suavidad, dulzura y perfil afrutado y aromático. Constituye el 60% de la producción mundial.</p>
+                            
+                            <h5>Características:</h5>
+                            <ol class="list-group list-group-numbered list-group-flush">
+                                <li class="list-group-item">Contenido de cafeína: 0.7% - 1.5%</li>
+                                <li class="list-group-item">Altitudes elevadas de cultivo</li>
+                                <li class="list-group-item">Sabor suave y dulce</li>
+                                <li class="list-group-item">Notas frutales y florales</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100 shadow hover-card">
+                        <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="Café Robusta">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger">
+                                <i class="bi bi-lightning-fill me-2"></i>Robusta
+                            </h3>
+                            <p class="card-text">Conocido por su sabor fuerte, intenso y amargo. Más resistente y adaptable a diferentes climas.</p>
+                            
+                            <h5>Características:</h5>
+                            <ol class="list-group list-group-numbered list-group-flush">
+                                <li class="list-group-item">Contenido de cafeína: 2% - 4%</li>
+                                <li class="list-group-item">Cultivo en altitudes bajas</li>
+                                <li class="list-group-item">Sabor fuerte e intenso</li>
+                                <li class="list-group-item">Ideal para espresso</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brewing Methods Section -->
+    <section id="brewing" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Métodos de Preparación</h2>
+                <p class="lead">Cada método ofrece una experiencia sensorial única</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center hover-item">
+                        <div class="brewing-icon mb-3">
+                            <i class="bi bi-cup-hot display-1 text-primary"></i>
+                        </div>
+                        <h4>Espresso</h4>
+                        <p>La base de todas las bebidas de café. Concentrado y aromático.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center hover-item">
+                        <div class="brewing-icon mb-3">
+                            <i class="bi bi-funnel display-1 text-success"></i>
+                        </div>
+                        <h4>Pour Over</h4>
+                        <p>Precisión y control para una taza limpia y aromática.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center hover-item">
+                        <div class="brewing-icon mb-3">
+                            <i class="bi bi-hourglass display-1 text-warning"></i>
+                        </div>
+                        <h4>Prensa Francesa</h4>
+                        <p>Inmersión total para un café rico y con mucho cuerpo.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center hover-item">
+                        <div class="brewing-icon mb-3">
+                            <i class="bi bi-droplet display-1 text-info"></i>
+                        </div>
+                        <h4>Cold Brew</h4>
+                        <p>Extracción en frío para un sabor suave y dulce.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="display-4 fw-bold mb-4">¿Listo para Profundizar?</h2>
+            <p class="lead mb-4">Explora nuestros artículos detallados y recursos sobre el mundo del café</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="articulos.html" class="btn btn-light btn-lg hover-effect">
+                    <i class="bi bi-book me-2"></i>Leer Artículos
+                </a>
+                <a href="contactos.html" class="btn btn-outline-light btn-lg hover-effect">
+                    <i class="bi bi-envelope me-2"></i>Contáctanos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-cup-hot-fill me-2"></i>Café Mundo</h5>
+                    <p>Tu guía completa para explorar el fascinante mundo del café, desde el grano hasta la taza perfecta.</p>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Enlaces Útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none hover-link">Inicio</a></li>
+                        <li><a href="articulos.html" class="text-light text-decoration-none hover-link">Artículos</a></li>
+                        <li><a href="enlaces.html" class="text-light text-decoration-none hover-link">Enlaces</a></li>
+                        <li><a href="contactos.html" class="text-light text-decoration-none hover-link">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-youtube"></i></a>
+                    </div>
+                    
+                    <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#privacyModal">
+                        <i class="bi bi-shield-check me-2"></i>Políticas de Privacidad
+                    </button>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 Café Mundo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Welcome Modal -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-cup-hot-fill text-primary me-2"></i>
+                        ¡Bienvenido a Café Mundo!
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                             alt="Coffee welcome" class="img-fluid rounded mb-3" style="max-height: 200px;">
+                    </div>
+                    <p>Estás a punto de embarcarte en un viaje fascinante por el mundo del café. Desde las antiguas leyendas de Etiopía hasta las modernas técnicas de barista, descubrirás:</p>
+                    <ul>
+                        <li>La rica historia del café y su expansión global</li>
+                        <li>Las diferencias entre variedades como Arábica y Robusta</li>
+                        <li>Técnicas de preparación para la taza perfecta</li>
+                        <li>Los secretos del espresso y la extracción</li>
+                        <li>Beneficios para la salud y consumo responsable</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="scrollToSection('about')">
+                        <i class="bi bi-arrow-right me-2"></i>Comenzar Exploración
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-shield-check text-success me-2"></i>
+                        Políticas de Privacidad
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Recopilación de Información</h6>
+                    <p>En Café Mundo, respetamos tu privacidad. Esta página web es únicamente informativa y educativa sobre el mundo del café.</p>
+                    
+                    <h6>Uso de la Información</h6>
+                    <p>No recopilamos información personal de los usuarios. El formulario de contacto utiliza tu cliente de correo local.</p>
+                    
+                    <h6>Cookies</h6>
+                    <p>Utilizamos únicamente cookies técnicas necesarias para el funcionamiento del sitio, como las preferencias del modo oscuro.</p>
+                    
+                    <h6>Enlaces Externos</h6>
+                    <p>Nuestro sitio puede contener enlaces a recursos externos. No nos hacemos responsables de las políticas de privacidad de terceros.</p>
+                    
+                    <h6>Contacto</h6>
+                    <p>Si tienes preguntas sobre estas políticas, puedes contactarnos a través del formulario de contacto.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
