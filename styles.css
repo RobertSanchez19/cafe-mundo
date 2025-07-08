@@ -39,7 +39,6 @@ body {
     padding-top: 76px;
 }
 
-/* Asegurar que todos los headings usen la variable de color */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -48,12 +47,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .display-1, .display-2, .display-3, .display-4 {
     font-family: 'Playfair Display', serif;
-    color: var(--text-color);
-}
-
-/* Asegurar que los párrafos usen la variable de color */
-p {
-    color: var(--text-color);
 }
 
 /* === NAVBAR === */
@@ -102,6 +95,23 @@ p {
     transform: translateY(-2px);
 }
 
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28139, 69, 19, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28210, 105, 30, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
 /* === DARK MODE TOGGLE === */
 .dark-mode-toggle {
     position: relative;
@@ -111,15 +121,13 @@ p {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     background-color: transparent;
-    border-radius: 25px;
-    min-width: 120px;
-    height: 45px;
+    border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0.5rem 1rem;
     transition: var(--transition);
-    font-size: 0.9rem;
-    font-weight: 500;
+    white-space: nowrap;
 }
 
 #darkModeToggle:hover {
@@ -129,8 +137,10 @@ p {
     box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
 }
 
-#darkModeToggle i {
-    margin-right: 0.5rem;
+.dark-mode-text {
+    margin-left: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 /* === HERO SECTION === */
@@ -168,28 +178,15 @@ p {
 .hero-content h1 {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     animation: fadeInUp 1s ease-out;
-    color: white !important;
 }
 
 .hero-content p {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     animation: fadeInUp 1s ease-out 0.3s backwards;
-    color: white !important;
 }
 
 .hero-content .btn {
     animation: fadeInUp 1s ease-out 0.6s backwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* === CARDS === */
@@ -199,15 +196,6 @@ p {
     border-radius: 15px;
     overflow: hidden;
     transition: var(--transition);
-    color: var(--text-color);
-}
-
-.card-title {
-    color: var(--text-color);
-}
-
-.card-text {
-    color: var(--text-color);
 }
 
 .card-img-top {
@@ -225,6 +213,15 @@ p {
     transform: scale(1.05);
 }
 
+.card-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-footer {
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+}
+
 /* === BUTTONS === */
 .btn-primary {
     background-color: var(--primary-color);
@@ -233,7 +230,6 @@ p {
     padding: 0.7rem 2rem;
     font-weight: 600;
     transition: var(--transition);
-    color: white;
 }
 
 .btn-primary:hover {
@@ -241,7 +237,6 @@ p {
     border-color: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: 0 0.5rem 1rem rgba(139,69,19,0.3);
-    color: white;
 }
 
 .hover-effect:hover {
@@ -258,131 +253,10 @@ p {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
-/* === FORCE WHITE TEXT ON ALL COLORED BACKGROUNDS === */
-.bg-primary h1,
-.bg-primary h2, 
-.bg-primary h3,
-.bg-primary h4,
-.bg-primary h5,
-.bg-primary h6,
-.bg-primary .display-1,
-.bg-primary .display-2,
-.bg-primary .display-3,
-.bg-primary .display-4,
-.bg-primary p,
-.bg-primary .lead,
-.bg-success h1,
-.bg-success h2,
-.bg-success h3,
-.bg-success h4,
-.bg-success h5,
-.bg-success h6,
-.bg-success .display-1,
-.bg-success .display-2,
-.bg-success .display-3,
-.bg-success .display-4,
-.bg-success p,
-.bg-success .lead,
-.bg-warning h1,
-.bg-warning h2,
-.bg-warning h3,
-.bg-warning h4,
-.bg-warning h5,
-.bg-warning h6,
-.bg-warning .display-1,
-.bg-warning .display-2,
-.bg-warning .display-3,
-.bg-warning .display-4,
-.bg-warning p,
-.bg-warning .lead,
-.bg-info h1,
-.bg-info h2,
-.bg-info h3,
-.bg-info h4,
-.bg-info h5,
-.bg-info h6,
-.bg-info .display-1,
-.bg-info .display-2,
-.bg-info .display-3,
-.bg-info .display-4,
-.bg-info p,
-.bg-info .lead,
-.bg-danger h1,
-.bg-danger h2,
-.bg-danger h3,
-.bg-danger h4,
-.bg-danger h5,
-.bg-danger h6,
-.bg-danger .display-1,
-.bg-danger .display-2,
-.bg-danger .display-3,
-.bg-danger .display-4,
-.bg-danger p,
-.bg-danger .lead {
-    color: white !important;
-}
-
-/* Force white text in hero sections */
-.hero-content h1,
-.hero-content h2,
-.hero-content h3,
-.hero-content h4,
-.hero-content h5,
-.hero-content h6,
-.hero-content p,
-.hero-content .lead {
-    color: white !important;
-}
-
-/* Force white text in header sections (colored backgrounds) */
-section.py-5.bg-primary h1,
-section.py-5.bg-primary h2,
-section.py-5.bg-primary h3,
-section.py-5.bg-primary h4,
-section.py-5.bg-primary h5,
-section.py-5.bg-primary h6,
-section.py-5.bg-primary p,
-section.py-5.bg-primary .lead,
-section.py-5.bg-success h1,
-section.py-5.bg-success h2,
-section.py-5.bg-success h3,
-section.py-5.bg-success h4,
-section.py-5.bg-success h5,
-section.py-5.bg-success h6,
-section.py-5.bg-success p,
-section.py-5.bg-success .lead,
-section.py-5.bg-warning h1,
-section.py-5.bg-warning h2,
-section.py-5.bg-warning h3,
-section.py-5.bg-warning h4,
-section.py-5.bg-warning h5,
-section.py-5.bg-warning h6,
-section.py-5.bg-warning p,
-section.py-5.bg-warning .lead,
-section.py-5.bg-info h1,
-section.py-5.bg-info h2,
-section.py-5.bg-info h3,
-section.py-5.bg-info h4,
-section.py-5.bg-info h5,
-section.py-5.bg-info h6,
-section.py-5.bg-info p,
-section.py-5.bg-info .lead,
-section.py-5.bg-danger h1,
-section.py-5.bg-danger h2,
-section.py-5.bg-danger h3,
-section.py-5.bg-danger h4,
-section.py-5.bg-danger h5,
-section.py-5.bg-danger h6,
-section.py-5.bg-danger p,
-section.py-5.bg-danger .lead {
-    color: white !important;
-}
-
 /* === HOVER EFFECTS === */
 .hover-item {
     transition: var(--transition);
     cursor: pointer;
-    color: var(--text-color);
 }
 
 .hover-item:hover {
@@ -401,7 +275,6 @@ section.py-5.bg-danger .lead {
 
 .hover-link {
     transition: var(--transition);
-    color: var(--text-color);
 }
 
 .hover-link:hover {
@@ -412,7 +285,6 @@ section.py-5.bg-danger .lead {
 .hover-social {
     font-size: 1.5rem;
     transition: var(--transition);
-    color: var(--text-color);
 }
 
 .hover-social:hover {
@@ -427,6 +299,48 @@ section.py-5.bg-danger .lead {
 
 .brewing-icon:hover {
     transform: scale(1.1) rotate(5deg);
+}
+
+/* === FORMS === */
+.form-control, .form-select {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
+}
+
+.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.form-label {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.form-text {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.form-check-label {
+    color: var(--text-color);
+}
+
+.input-group-text {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
 }
 
 /* === LIST GROUPS === */
@@ -456,27 +370,37 @@ section.py-5.bg-danger .lead {
     border-top: 1px solid var(--border-color);
 }
 
-.modal-title {
-    color: var(--text-color);
-}
-
 .modal-body {
     color: var(--text-color);
 }
 
-.modal-body h4, .modal-body h5, .modal-body h6 {
-    color: var(--text-color);
+.modal-body h4, .modal-body h5, .modal-body h6, .modal-body p, .modal-body li {
+    color: var(--text-color) !important;
 }
 
-.modal-body p {
-    color: var(--text-color);
+/* === ACCORDION === */
+.accordion-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
 }
 
-.modal-body ul li {
+.accordion-button {
+    background-color: var(--card-bg);
     color: var(--text-color);
+    border: none;
 }
 
-.modal-body ol li {
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
+}
+
+.accordion-body {
+    background-color: var(--card-bg);
     color: var(--text-color);
 }
 
@@ -487,6 +411,14 @@ footer {
 
 .social-links a {
     display: inline-block;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 /* === CAROUSEL === */
@@ -505,125 +437,60 @@ footer {
     padding: 1rem;
 }
 
-/* === ANIMATIONS === */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.pulse-animation {
-    animation: pulse 2s infinite;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .display-4 {
-        font-size: 2rem;
-    }
-    
-    .navbar-brand {
-        font-size: 1.3rem;
-    }
-    
-    .hero-content {
-        padding: 1rem;
-    }
-
-    #darkModeToggle {
-        min-width: 100px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    
-    .btn-lg {
-        padding: 0.5rem 1.5rem;
-        font-size: 1rem;
-    }
-    
-    .dark-mode-toggle {
-        margin-right: 0.5rem !important;
-    }
-
-    #darkModeToggle {
-        min-width: 90px;
-        font-size: 0.7rem;
-    }
-}
-
-/* === SCROLL BEHAVIOR === */
-html {
-    scroll-behavior: smooth;
-}
-
-/* === UTILITIES === */
-.text-primary {
-    color: var(--primary-color) !important;
-}
-
-.text-secondary {
-    color: var(--secondary-color) !important;
-}
-
-.border-primary {
-    border-color: var(--primary-color) !important;
-}
-
-/* === LOADING ANIMATION === */
-.loading {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
-
-.loading.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* === CONTACT FORM STYLES === */
-.form-control {
+/* === BREADCRUMB === */
+.breadcrumb {
     background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    color: var(--text-color);
     border-radius: 10px;
-    padding: 0.75rem 1rem;
+    padding: 1rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--primary-color);
+}
+
+.breadcrumb-item, .breadcrumb-item.active {
+    color: var(--text-color);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+/* === CONTACT INFO === */
+.contact-info .contact-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.contact-info .contact-item:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+.contact-info .contact-item strong,
+.contact-info .contact-item div {
+    color: var(--text-color);
+}
+
+/* === HERRAMIENTAS ESPECÍFICAS (solo para herramientas.html) === */
+.timer-display {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+}
+
+.temp-guide-item {
+    padding: 1rem;
+    border-radius: 10px;
     transition: var(--transition);
 }
 
-.form-control:focus {
-    background-color: var(--card-bg);
-    border-color: var(--primary-color);
-    color: var(--text-color);
-    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
-}
-
-.form-control::placeholder {
-    color: var(--text-color);
-    opacity: 0.6;
-}
-
-.form-label {
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-.form-text {
-    color: var(--text-color);
-    opacity: 0.7;
-}
-
-.form-check-label {
-    color: var(--text-color);
+.temp-guide-item:hover {
+    background-color: rgba(139, 69, 19, 0.1);
 }
 
 /* === IFRAME STYLES === */
@@ -661,88 +528,7 @@ html {
 .article-meta {
     font-size: 0.9rem;
     color: var(--text-color);
-    opacity: 0.7;
-}
-
-/* === BREADCRUMB === */
-.breadcrumb {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 1rem;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    color: var(--primary-color);
-}
-
-.breadcrumb-item a {
-    color: var(--text-color);
-}
-
-.breadcrumb-item.active {
-    color: var(--text-color);
-}
-
-/* === FORM SELECT === */
-.form-select {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    color: var(--text-color);
-    border-radius: 10px;
-}
-
-.form-select:focus {
-    background-color: var(--card-bg);
-    border-color: var(--primary-color);
-    color: var(--text-color);
-    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
-}
-
-/* === ACCORDION === */
-.accordion-item {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-}
-
-.accordion-button {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border: none;
-}
-
-.accordion-button:not(.collapsed) {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.accordion-button:focus {
-    box-shadow: 0 0 0 0.2rem rgba(139,69,19,0.25);
-}
-
-.accordion-body {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-}
-
-/* === CONTACT INFO === */
-.contact-info .contact-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 1rem;
-    border-radius: 10px;
-    transition: var(--transition);
-}
-
-.contact-info .contact-item:hover {
-    background-color: rgba(139, 69, 19, 0.1);
-}
-
-/* === TIMER DISPLAY === */
-.timer-display {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 15px;
-    padding: 2rem;
-    color: white;
+    opacity: 0.8;
 }
 
 /* === SEARCH INPUT === */
@@ -750,32 +536,11 @@ html {
     border-radius: 25px;
     padding: 0.75rem 1.5rem;
     border: 2px solid rgba(255,255,255,0.3);
-    color: white !important;
-    background-color: rgba(255,255,255,0.1) !important;
 }
 
 #searchInput:focus {
     border-color: rgba(255,255,255,0.8);
     box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.25);
-    color: white !important;
-    background-color: rgba(255,255,255,0.15) !important;
-}
-
-#searchInput::placeholder {
-    color: rgba(255,255,255,0.8) !important;
-}
-
-/* Search button styling */
-.bg-primary .btn-light {
-    color: var(--primary-color) !important;
-    background-color: white !important;
-    border-color: white !important;
-}
-
-.bg-primary .btn-light:hover {
-    color: white !important;
-    background-color: var(--secondary-color) !important;
-    border-color: var(--secondary-color) !important;
 }
 
 /* === BADGE COLORS === */
@@ -805,13 +570,61 @@ html {
     background-color: #6c757d !important;
 }
 
-/* === SPECIAL EFFECTS === */
-.glow-effect {
-    box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+/* === ALERTS === */
+.alert {
+    color: var(--text-color);
+    border-color: var(--border-color);
+    border-radius: 10px;
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
+.alert-info {
+    background-color: rgba(13, 202, 240, 0.1);
+    border-color: #0dcaf0;
+    color: #0dcaf0;
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.1);
+    border-color: #198754;
+    color: #198754;
+}
+
+/* === TABLES === */
+.table {
+    color: var(--text-color);
+}
+
+.table-bordered {
+    border-color: var(--border-color);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td,
+.table-striped > tbody > tr:nth-of-type(odd) > th {
+    background-color: rgba(139, 69, 19, 0.05);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 @keyframes fadeIn {
@@ -819,80 +632,119 @@ html {
     to { opacity: 1; }
 }
 
-/* === FOOTER SOCIAL LINKS === */
-.social-links a {
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: var(--transition);
+.pulse-animation {
+    animation: pulse 2s infinite;
 }
 
-.social-links a:hover {
-    background-color: rgba(255,255,255,0.1);
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
 }
 
-/* === NAVBAR TOGGLER === */
-.navbar-toggler {
-    border: none;
-    padding: 0.25rem 0.5rem;
+.loading {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
 }
 
-.navbar-toggler:focus {
-    box-shadow: none;
+.loading.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28139, 69, 19, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+/* === UTILITIES === */
+.text-primary {
+    color: var(--primary-color) !important;
 }
 
-[data-theme="dark"] .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28210, 105, 30, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.text-secondary {
+    color: var(--secondary-color) !important;
 }
 
-/* === ALERTS === */
-.alert {
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+.border-primary {
+    border-color: var(--primary-color) !important;
 }
 
-.alert-info {
-    background-color: rgba(13, 202, 240, 0.1);
-    border-color: rgba(13, 202, 240, 0.2);
-    color: var(--text-color);
+.glow-effect {
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
 }
 
-.alert-warning {
-    background-color: rgba(255, 193, 7, 0.1);
-    border-color: rgba(255, 193, 7, 0.2);
-    color: var(--text-color);
+/* === SCROLL BEHAVIOR === */
+html {
+    scroll-behavior: smooth;
 }
 
-.alert-success {
-    background-color: rgba(25, 135, 84, 0.1);
-    border-color: rgba(25, 135, 84, 0.2);
-    color: var(--text-color);
-}
-
-/* === TABLE STYLES === */
-table {
-    color: var(--text-color);
-}
-
-th {
-    color: var(--text-color);
-}
-
-td {
-    color: var(--text-color);
-}
-
-/* === LEAD TEXT === */
-.lead {
-    color: var(--text-color);
-}
-
-/* === SMALL TEXT === */
-small, .small {
-    color: var(--text-color);
+/* === DARK MODE SPECIFIC OVERRIDES === */
+[data-theme="dark"] .form-control::placeholder {
+    color: #adb5bd !important;
     opacity: 0.8;
+}
+
+[data-theme="dark"] .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .form-text {
+    color: #adb5bd !important;
+}
+
+[data-theme="dark"] .article-meta {
+    color: #adb5bd !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+    
+    .dark-mode-text {
+        display: none;
+    }
+    
+    #darkModeToggle {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .dark-mode-toggle {
+        margin-right: 0.5rem !important;
+    }
+}
+
+/* === NAVBAR SCROLL EFFECT === */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-theme="dark"] .navbar.scrolled {
+    background-color: rgba(26, 26, 26, 0.95) !important;
 }

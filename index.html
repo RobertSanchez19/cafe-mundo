@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Descubre el fascinante mundo del café: desde su historia hasta los métodos de preparación perfectos. Guía completa para amantes del café.">
     <meta name="keywords" content="café, espresso, arábica, robusta, barista, tostado, molienda, preparación, coffee, caffeine">
-    <meta name="author" content="Café Mundo">
+    <meta name="author" content="Robert Sanchez - Café Mundo">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Café Mundo - El Viaje Perfecto del Grano a la Taza">
     <meta property="og:description" content="Explora la cultura del café, aprende técnicas de preparación y descubre los secretos de una taza perfecta.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tu-usuario.github.io/cafe-mundo">
-    <meta property="og:image" content="https://tu-usuario.github.io/cafe-mundo/images/cafe-hero.jpg">
+    <meta property="og:url" content="https://robertsanchez19.github.io/cafe-mundo/">
+    <meta property="og:image" content="https://robertsanchez19.github.io/cafe-mundo/images/cafe-hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Café Mundo - El Viaje Perfecto del Grano a la Taza">
     <meta name="twitter:description" content="Explora la cultura del café, aprende técnicas de preparación y descubre los secretos de una taza perfecta.">
@@ -43,7 +43,7 @@
             <div class="dark-mode-toggle me-3">
                 <button id="darkModeToggle" class="btn btn-outline-secondary">
                     <i class="bi bi-moon-fill"></i>
-                    <span class="mode-text">Modo Oscuro</span>
+                    <span class="dark-mode-text">MODO OSCURO 🌙</span>
                 </button>
             </div>
             
@@ -67,6 +67,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="enlaces.html">Enlaces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="herramientas.html">Herramientas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contactos.html">Contacto</a>
@@ -285,6 +288,9 @@
                 <a href="articulos.html" class="btn btn-light btn-lg hover-effect">
                     <i class="bi bi-book me-2"></i>Leer Artículos
                 </a>
+                <a href="herramientas.html" class="btn btn-outline-light btn-lg hover-effect">
+                    <i class="bi bi-tools me-2"></i>Usar Herramientas
+                </a>
                 <a href="contactos.html" class="btn btn-outline-light btn-lg hover-effect">
                     <i class="bi bi-envelope me-2"></i>Contáctanos
                 </a>
@@ -299,6 +305,8 @@
                 <div class="col-lg-4 mb-4">
                     <h5><i class="bi bi-cup-hot-fill me-2"></i>Café Mundo</h5>
                     <p>Tu guía completa para explorar el fascinante mundo del café, desde el grano hasta la taza perfecta.</p>
+                    <p class="mb-2"><strong>Creado por:</strong> Robert Sanchez</p>
+                    <p class="mb-0"><small>Proyecto académico - UNPHU</small></p>
                 </div>
                 
                 <div class="col-lg-4 mb-4">
@@ -307,6 +315,7 @@
                         <li><a href="#home" class="text-light text-decoration-none hover-link">Inicio</a></li>
                         <li><a href="articulos.html" class="text-light text-decoration-none hover-link">Artículos</a></li>
                         <li><a href="enlaces.html" class="text-light text-decoration-none hover-link">Enlaces</a></li>
+                        <li><a href="herramientas.html" class="text-light text-decoration-none hover-link">Herramientas</a></li>
                         <li><a href="contactos.html" class="text-light text-decoration-none hover-link">Contacto</a></li>
                     </ul>
                 </div>
@@ -314,10 +323,10 @@
                 <div class="col-lg-4 mb-4">
                     <h5>Síguenos</h5>
                     <div class="social-links">
-                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-light me-3 hover-social"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('facebook')"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('twitter')"><i class="bi bi-twitter"></i></a>
+                        <a href="https://instagram.com/robertsanchezg" target="_blank" class="text-light me-3 hover-social"><i class="bi bi-instagram"></i></a>
+                        <a href="https://wa.me/18094079575" target="_blank" class="text-light me-3 hover-social"><i class="bi bi-whatsapp"></i></a>
                     </div>
                     
                     <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#privacyModal">
@@ -329,6 +338,7 @@
             <hr class="my-4">
             <div class="text-center">
                 <p>&copy; 2025 Café Mundo. Todos los derechos reservados.</p>
+                <small class="text-muted">Proyecto desarrollado por Robert Sanchez - Universidad Nacional Pedro Henríquez Ureña</small>
             </div>
         </div>
     </footer>
@@ -393,7 +403,7 @@
                     <p>Nuestro sitio puede contener enlaces a recursos externos. No nos hacemos responsables de las políticas de privacidad de terceros.</p>
                     
                     <h6>Contacto</h6>
-                    <p>Si tienes preguntas sobre estas políticas, puedes contactarnos a través del formulario de contacto.</p>
+                    <p>Si tienes preguntas sobre estas políticas, puedes contactarnos a través del formulario de contacto en <a href="mailto:rs24-0177@unphu.edu.do">rs24-0177@unphu.edu.do</a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>

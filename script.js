@@ -1,8 +1,155 @@
+// === HELPER FUNCTIONS FOR THEME ===
+function updateContactFormColors(theme) {
+    // Verificar que el tema sea válido
+    if (!theme || (theme !== 'dark' && theme !== 'light')) {
+        return;
+    }
+    
+    try {
+        // Colores para modo oscuro y claro
+        const colors = {
+            dark: {
+                text: '#e9ecef',
+                background: '#1e1e1e',
+                border: '#404040',
+                placeholder: '#adb5bd',
+                mutedText: '#adb5bd'
+            },
+            light: {
+                text: '#333',
+                background: '#fff',
+                border: '#dee2e6',
+                placeholder: '#6c757d',
+                mutedText: '#6c757d'
+            }
+        };
+        
+        const currentColors = colors[theme];
+        
+        // Actualizar inputs del formulario (solo si existen)
+        const formInputs = document.querySelectorAll('.form-control, .form-select');
+        formInputs.forEach(input => {
+            if (input) {
+                input.style.setProperty('color', currentColors.text, 'important');
+                input.style.setProperty('background-color', currentColors.background, 'important');
+                input.style.setProperty('border-color', currentColors.border, 'important');
+            }
+        });
+        
+        // Actualizar labels (solo si existen)
+        const formLabels = document.querySelectorAll('.form-label, label, .form-check-label');
+        formLabels.forEach(label => {
+            if (label) {
+                label.style.setProperty('color', currentColors.text, 'important');
+            }
+        });
+        
+        // Actualizar texto de ayuda (solo si existen)
+        const helpTexts = document.querySelectorAll('.form-text, .small, .text-muted');
+        helpTexts.forEach(text => {
+            if (text) {
+                text.style.setProperty('color', currentColors.mutedText, 'important');
+            }
+        });
+        
+        // Actualizar elementos de contacto (solo si existen)
+        const contactItems = document.querySelectorAll('.contact-item, .contact-item div, .contact-item strong');
+        contactItems.forEach(item => {
+            if (item) {
+                item.style.setProperty('color', currentColors.text, 'important');
+            }
+        });
+        
+        // Actualizar cards (solo si existen)
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            if (card) {
+                card.style.setProperty('background-color', currentColors.background, 'important');
+                card.style.setProperty('border-color', currentColors.border, 'important');
+            }
+        });
+        
+        // Actualizar texto en cards (solo si existen)
+        const cardTexts = document.querySelectorAll('.card-body, .card-text, .card-title, .card-footer');
+        cardTexts.forEach(element => {
+            if (element) {
+                element.style.setProperty('color', currentColors.text, 'important');
+            }
+        });
+    } catch (error) {
+        console.log('Error al actualizar colores del formulario:', error);
+    }
+}
+
+function updateTextColors(theme) {
+    // Verificar que el tema sea válido
+    if (!theme || (theme !== 'dark' && theme !== 'light')) {
+        return;
+    }
+    
+    try {
+        const textColor = theme === 'dark' ? '#e9ecef' : '#333';
+        const mutedColor = theme === 'dark' ? '#adb5bd' : '#6c757d';
+        
+        // Actualizar textos generales (solo si existen)
+        const textElements = document.querySelectorAll(
+            '.card-text, .article-meta, .card-body p, .card-body h5, .card-body h6, ' +
+            '.modal-body p, .modal-body h4, .modal-body h5, .modal-body h6, .modal-body li, ' +
+            '.breadcrumb-item, .card-footer, p, .lead'
+        );
+        
+        textElements.forEach(element => {
+            if (element) {
+                if (element.classList.contains('text-muted')) {
+                    element.style.setProperty('color', mutedColor, 'important');
+                } else {
+                    element.style.setProperty('color', textColor, 'important');
+                }
+            }
+        });
+        
+        // Actualizar elementos de modales (solo si existen)
+        const modalElements = document.querySelectorAll('.modal-body *');
+        modalElements.forEach(element => {
+            if (element && (element.tagName === 'P' || element.tagName === 'LI' || 
+                element.tagName === 'H4' || element.tagName === 'H5' || element.tagName === 'H6')) {
+                element.style.setProperty('color', textColor, 'important');
+            }
+        });
+        
+        // Actualizar labels del formulario específicamente
+        const formLabels = document.querySelectorAll('.form-label, label, .form-check-label');
+        formLabels.forEach(label => {
+            if (label) {
+                label.style.setProperty('color', textColor, 'important');
+            }
+        });
+        
+        // Actualizar placeholders (esto requiere CSS, pero podemos forzar el color del input)
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            if (input) {
+                input.style.setProperty('color', textColor, 'important');
+            }
+        });
+        
+    } catch (error) {
+        console.log('Error al actualizar colores de texto:', error);
+    }
+}
+
 // === DARK MODE FUNCTIONALITY ===
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    // Verificar que el botón existe
+    if (!darkModeToggle) {
+        return;
+    }
+    
     const body = document.body;
     const icon = darkModeToggle.querySelector('i');
+    const text = darkModeToggle.querySelector('.dark-mode-text');
     
     // Check for saved theme preference or default to light mode
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -11,36 +158,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update icon and text based on current theme
     updateDarkModeButton(currentTheme);
     
+    // Apply colors on page load
+    setTimeout(() => {
+        updateContactFormColors(currentTheme);
+        updateTextColors(currentTheme);
+    }, 100);
+    
     // Dark mode toggle event listener
     darkModeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateDarkModeButton(newTheme);
-        
-        // Show confirmation alert
-        showAlert(`${newTheme === 'dark' ? 'Modo oscuro' : 'Modo claro'} activado`, 'success');
+        try {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateDarkModeButton(newTheme);
+            
+            // Update colors with delay to ensure DOM is ready
+            setTimeout(() => {
+                updateContactFormColors(newTheme);
+                updateTextColors(newTheme);
+            }, 50);
+            
+            // Show confirmation alert
+            showAlert(`Modo ${newTheme === 'dark' ? 'oscuro' : 'claro'} activado`, 'success');
+        } catch (error) {
+            console.log('Error al cambiar modo:', error);
+        }
     });
     
     function updateDarkModeButton(theme) {
-        const buttonText = darkModeToggle.querySelector('.mode-text') || createModeText();
-        
-        if (theme === 'dark') {
-            icon.className = 'bi bi-sun-fill';
-            buttonText.textContent = 'Modo Claro';
-        } else {
-            icon.className = 'bi bi-moon-fill';
-            buttonText.textContent = 'Modo Oscuro';
+        try {
+            if (!icon || !text) return;
+            
+            if (theme === 'dark') {
+                icon.className = 'bi bi-sun-fill';
+                text.textContent = 'MODO CLARO 🔆';
+            } else {
+                icon.className = 'bi bi-moon-fill';
+                text.textContent = 'MODO OSCURO 🌙';
+            }
+        } catch (error) {
+            console.log('Error al actualizar botón:', error);
         }
-    }
-    
-    function createModeText() {
-        const span = document.createElement('span');
-        span.className = 'mode-text';
-        darkModeToggle.appendChild(span);
-        return span;
     }
 });
 
@@ -167,7 +327,7 @@ ${message.value}
 
 Saludos cordiales.`;
         
-        const mailtoLink = `mailto:info@cafemundo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailtoLink = `mailto:rs24-0177@unphu.edu.do?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;
         
         showAlert('Abriendo cliente de correo...', 'success');
@@ -187,67 +347,9 @@ function showFieldError(field, message) {
     field.parentNode.appendChild(errorDiv);
 }
 
-// === ENHANCED SEARCH FUNCTIONALITY - GOOGLE SEARCH ===
+// === ENHANCED SEARCH FUNCTIONALITY ===
 let searchTimeout;
 function searchArticles() {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-        const searchTerm = document.getElementById('searchInput').value.trim();
-        
-        if (searchTerm) {
-            // Perform Google search with site-specific query
-            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm + ' site:tu-usuario.github.io/cafe-mundo')}`;
-            
-            // Show search message
-            const resultsMessage = document.getElementById('searchResults');
-            if (resultsMessage) {
-                resultsMessage.innerHTML = `
-                    <div class="alert alert-info">
-                        <i class="bi bi-search me-2"></i>
-                        Buscando "${searchTerm}" en Google...
-                    </div>
-                `;
-                
-                // Clear message after 2 seconds
-                setTimeout(() => {
-                    if (resultsMessage) {
-                        resultsMessage.innerHTML = '';
-                    }
-                }, 2000);
-            }
-            
-            // Open Google search in new tab
-            window.open(googleSearchUrl, '_blank');
-            
-            // Show success alert
-            showAlert(`Búsqueda de "${searchTerm}" enviada a Google`, 'info');
-            
-            // Clear search input
-            document.getElementById('searchInput').value = '';
-        } else {
-            // Show warning if search is empty
-            const resultsMessage = document.getElementById('searchResults');
-            if (resultsMessage) {
-                resultsMessage.innerHTML = `
-                    <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        Por favor ingresa un término de búsqueda
-                    </div>
-                `;
-                
-                // Clear message after 3 seconds
-                setTimeout(() => {
-                    if (resultsMessage) {
-                        resultsMessage.innerHTML = '';
-                    }
-                }, 3000);
-            }
-        }
-    }, 300);
-}
-
-// Alternative function for local search (if needed)
-function searchArticlesLocal() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -301,15 +403,16 @@ function searchArticlesLocal() {
     }, 300);
 }
 
-// === COFFEE TIMER FUNCTIONALITY ===
+// === ENHANCED COFFEE TIMER FUNCTIONALITY ===
 let timerInterval;
 let timerSeconds = 0;
 let timerAudio;
+let timerStartTime;
 
 function initializeTimer() {
     // Create audio context for timer sounds (optional)
     try {
-        timerAudio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFA==');
+        timerAudio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcCDuY2/LFeSUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFA==');
     } catch (e) {
         console.log('Audio not supported');
     }
@@ -321,6 +424,7 @@ function startCoffeeTimer() {
     }
     
     timerSeconds = 0;
+    timerStartTime = Date.now();
     const timerDisplay = document.getElementById('timerDisplay');
     const startBtn = document.getElementById('startTimer');
     const stopBtn = document.getElementById('stopTimer');
@@ -337,8 +441,31 @@ function startCoffeeTimer() {
             timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
         
-        // Visual feedback every 30 seconds
-        if (timerSeconds % 30 === 0 && timerSeconds > 0) {
+        // Visual feedback and alerts at key intervals
+        if (timerSeconds === 30) {
+            showAlert('30 segundos - Tiempo ideal para espresso ⏰', 'info');
+            if (timerDisplay) {
+                timerDisplay.style.color = '#0dcaf0';
+                setTimeout(() => {
+                    if (timerDisplay) timerDisplay.style.color = '';
+                }, 1000);
+            }
+        } else if (timerSeconds === 120) {
+            showAlert('2 minutos - Tiempo mínimo pour-over ⏰', 'info');
+        } else if (timerSeconds === 180) {
+            showAlert('3 minutos - Tiempo ideal pour-over ⏰', 'warning');
+        } else if (timerSeconds === 240) {
+            showAlert('4 minutos - Tiempo ideal prensa francesa ⏰', 'success');
+            if (timerDisplay) {
+                timerDisplay.style.color = '#198754';
+                setTimeout(() => {
+                    if (timerDisplay) timerDisplay.style.color = '';
+                }, 1000);
+            }
+        }
+        
+        // Visual feedback every 30 seconds after 4 minutes
+        if (timerSeconds > 240 && timerSeconds % 30 === 0) {
             if (timerDisplay) {
                 timerDisplay.style.color = '#dc3545';
                 setTimeout(() => {
@@ -348,7 +475,7 @@ function startCoffeeTimer() {
         }
     }, 1000);
     
-    showAlert('Temporizador de café iniciado ⏱️', 'info');
+    showAlert('⏱️ Temporizador de café iniciado', 'success');
 }
 
 function stopCoffeeTimer() {
@@ -359,12 +486,43 @@ function stopCoffeeTimer() {
     
     const startBtn = document.getElementById('startTimer');
     const stopBtn = document.getElementById('stopTimer');
+    const timerDisplay = document.getElementById('timerDisplay');
     
     if (startBtn) startBtn.disabled = false;
     if (stopBtn) stopBtn.disabled = true;
     
     const minutes = Math.floor(timerSeconds / 60);
     const seconds = timerSeconds % 60;
+    const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    // Determine brewing method based on time
+    let brewingMethod = '';
+    let feedback = '';
+    if (timerSeconds <= 35) {
+        brewingMethod = 'Espresso';
+        feedback = timerSeconds >= 25 && timerSeconds <= 30 ? '✅ Tiempo perfecto' : 
+                  timerSeconds < 25 ? '⚠️ Muy rápido - molienda más fina' : '⚠️ Muy lento - molienda más gruesa';
+    } else if (timerSeconds <= 90) {
+        brewingMethod = 'AeroPress';
+        feedback = '✅ Tiempo adecuado para AeroPress';
+    } else if (timerSeconds <= 210) {
+        brewingMethod = 'Pour-over (corto)';
+        feedback = '⚠️ Tiempo corto para pour-over';
+    } else if (timerSeconds <= 270) {
+        brewingMethod = 'Pour-over';
+        feedback = '✅ Tiempo ideal para pour-over';
+    } else if (timerSeconds <= 300) {
+        brewingMethod = 'Prensa Francesa';
+        feedback = '✅ Tiempo perfecto para prensa francesa';
+    } else {
+        brewingMethod = 'Inmersión larga';
+        feedback = '⏰ Tiempo largo - posible sobreextracción';
+    }
+    
+    // Reset timer display color
+    if (timerDisplay) {
+        timerDisplay.style.color = '';
+    }
     
     // Play sound if available
     if (timerAudio) {
@@ -375,10 +533,19 @@ function stopCoffeeTimer() {
         }
     }
     
-    showAlert(`⏰ Tiempo de preparación: ${minutes}:${seconds.toString().padStart(2, '0')}`, 'success');
+    // Show detailed completion message
+    const alertType = feedback.includes('✅') ? 'success' : 'warning';
+    showAlert(`⏰ ${brewingMethod}: ${timeString}<br><small>${feedback}</small>`, alertType);
+    
+    // Reset timer after 3 seconds
+    setTimeout(() => {
+        if (timerDisplay && !timerInterval) {
+            timerDisplay.textContent = '00:00';
+        }
+    }, 3000);
 }
 
-// === COFFEE CALCULATOR ===
+// === ENHANCED COFFEE CALCULATOR ===
 function calculateCoffeeRatio() {
     const water = parseFloat(document.getElementById('waterAmount')?.value || 0);
     const ratio = parseFloat(document.getElementById('coffeeRatio')?.value || 16);
@@ -391,25 +558,65 @@ function calculateCoffeeRatio() {
         const strength = ratio <= 15 ? 'Fuerte' : ratio >= 17 ? 'Suave' : 'Equilibrado';
         const color = ratio <= 15 ? 'success' : ratio >= 17 ? 'info' : 'warning';
         
+        // Determinar método recomendado
+        let recommendedMethod = '';
+        if (ratio <= 15) {
+            recommendedMethod = 'Ideal para espresso o métodos de concentración';
+        } else if (ratio <= 16) {
+            recommendedMethod = 'Perfecto para pour-over y métodos de filtro';
+        } else {
+            recommendedMethod = 'Excelente para prensa francesa o cold brew';
+        }
+        
+        // Calcular tiempo aproximado de extracción
+        let extractionTime = '';
+        if (ratio <= 15) {
+            extractionTime = '25-30 segundos (espresso)';
+        } else if (ratio <= 16) {
+            extractionTime = '2:30-3:30 minutos (pour-over)';
+        } else {
+            extractionTime = '4-6 minutos (inmersión)';
+        }
+        
         resultDiv.innerHTML = `
             <div class="alert alert-${color}">
                 <i class="bi bi-calculator me-2"></i>
-                <strong>Resultado:</strong><br>
-                Para ${water}ml de agua necesitas <strong>${coffee.toFixed(1)}g</strong> de café<br>
-                <small class="text-muted">Perfil: ${strength} (1:${ratio})</small>
+                <strong>Resultado del Cálculo:</strong><br>
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <strong>Agua:</strong> ${water}ml<br>
+                        <strong>Café:</strong> ${coffee.toFixed(1)}g
+                    </div>
+                    <div class="col-6">
+                        <strong>Ratio:</strong> 1:${ratio}<br>
+                        <strong>Perfil:</strong> ${strength}
+                    </div>
+                </div>
+                <hr class="my-2">
+                <small class="text-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    ${recommendedMethod}<br>
+                    <i class="bi bi-clock me-1"></i>
+                    Tiempo estimado: ${extractionTime}
+                </small>
             </div>
         `;
+        
+        // Mostrar alerta de éxito
+        showAlert(`Calculado: ${coffee.toFixed(1)}g de café para ${water}ml de agua`, 'success');
+        
     } else {
         resultDiv.innerHTML = `
             <div class="alert alert-warning">
                 <i class="bi bi-exclamation-triangle me-2"></i>
-                Por favor ingresa una cantidad válida de agua
+                <strong>Error en el cálculo</strong><br>
+                Por favor ingresa una cantidad válida de agua (mayor que 0)
             </div>
         `;
     }
 }
 
-// === RANDOM COFFEE TIP ===
+// === ENHANCED RANDOM COFFEE TIP ===
 function showRandomTip() {
     const tips = [
         "La temperatura ideal del agua para preparar café está entre 90-96°C",
@@ -421,11 +628,37 @@ function showRandomTip() {
         "El primer 'crack' en el tostado indica que el café está listo",
         "El café recién tostado necesita 'desgasificar' por 24-48 horas",
         "El café es la segunda mercancía más comercializada del mundo",
-        "Los finlandeses consumen más café per cápita que cualquier otro país"
+        "Los finlandeses consumen más café per cápita que cualquier otro país",
+        "La molienda consistente es más importante que el tamaño exacto",
+        "El agua representa más del 98% de tu taza de café",
+        "La crema del espresso debe tener un color avellana dorado",
+        "El café verde puede almacenarse hasta un año sin perder calidad",
+        "La altitud afecta el sabor: mayor altura = más acidez",
+        "El café lavado tiene sabores más limpios que el natural",
+        "Un tamper de 30 libras de presión es ideal para espresso",
+        "El café frío extrae más lentamente pero puede ser más dulce",
+        "Las variedades heirloom tienen sabores más complejos",
+        "El cupping profesional requiere café a 93.3°C exactamente"
     ];
     
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
     
+    // Si estamos en la página de herramientas, actualizar el elemento específico
+    const tipContent = document.getElementById('tipContent');
+    if (tipContent) {
+        tipContent.style.transition = 'opacity 0.3s ease';
+        tipContent.style.opacity = '0';
+        
+        setTimeout(() => {
+            tipContent.textContent = randomTip;
+            tipContent.style.opacity = '1';
+        }, 300);
+        
+        showAlert('¡Nuevo consejo actualizado!', 'success');
+        return;
+    }
+    
+    // Si no estamos en herramientas, mostrar modal como antes
     const tipModal = document.createElement('div');
     tipModal.className = 'modal fade';
     tipModal.innerHTML = `
@@ -500,7 +733,7 @@ function showCoffeeFacts() {
 
 // === SOCIAL SHARING ===
 function shareOnSocial(platform) {
-    const url = encodeURIComponent(window.location.href);
+    const url = encodeURIComponent('https://robertsanchez19.github.io/cafe-mundo/');
     const title = encodeURIComponent('Café Mundo - El Viaje Perfecto del Grano a la Taza');
     const description = encodeURIComponent('Descubre el fascinante mundo del café con nuestra guía completa');
     
@@ -517,10 +750,12 @@ function shareOnSocial(platform) {
             shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
             break;
         case 'whatsapp':
-            shareUrl = `https://wa.me/?text=${title}%20${url}`;
+            shareUrl = `https://wa.me/18094079575?text=${title}%20${url}`;
             break;
         case 'instagram':
-            showAlert('Para compartir en Instagram, copia el enlace y pégalo en tu historia', 'info');
+            // Open Instagram with username
+            window.open('https://instagram.com/robertsanchezg', '_blank');
+            showAlert('Síguenos en Instagram @robertsanchezg', 'info');
             return;
         default:
             return;
@@ -580,8 +815,12 @@ function initScrollAnimations() {
 
 // === ERROR HANDLING ===
 window.addEventListener('error', function(e) {
-    console.error('Error capturado:', e.error);
-    showAlert('Ha ocurrido un error. Por favor recarga la página.', 'warning');
+    // Solo mostrar alertas para errores críticos, no para errores menores
+    if (e.error && e.error.name && (e.error.name === 'TypeError' || e.error.name === 'ReferenceError')) {
+        console.error('Error capturado:', e.error);
+        // Comentamos la alerta para evitar mostrar errores menores
+        // showAlert('Ha ocurrido un error. Por favor recarga la página.', 'warning');
+    }
 });
 
 // === ACCESSIBILITY IMPROVEMENTS ===
@@ -627,69 +866,79 @@ document.addEventListener('DOMContentLoaded', function() {
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Café Mundo - Sitio web cargado correctamente ☕');
+    console.log('Desarrollado por Robert Sanchez - Universidad Nacional Pedro Henríquez Ureña');
     
-    // Initialize all components
-    initializeTimer();
-    initScrollAnimations();
-    
-    // Initialize coffee facts if element exists
-    if (document.getElementById('coffeeFactDisplay')) {
-        showCoffeeFacts();
-    }
-    
-    // Add smooth scrolling to all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Initialize search input listener
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', searchArticles);
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
+    try {
+        // Initialize all components
+        initializeTimer();
+        initScrollAnimations();
+        
+        // Initialize coffee facts if element exists
+        if (document.getElementById('coffeeFactDisplay')) {
+            showCoffeeFacts();
+        }
+        
+        // Add smooth scrolling to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                searchArticles();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize search input listener
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', searchArticles);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchArticles();
+                }
+            });
+        }
+        
+        // Add loading animations to elements
+        const animatedElements = document.querySelectorAll('.card, .brewing-icon, .hero-content, .article-card');
+        animatedElements.forEach(el => {
+            if (!el.classList.contains('loading')) {
+                el.classList.add('loading');
             }
         });
         
-        // Add placeholder text that indicates Google search
-        searchInput.placeholder = 'Buscar en Google...';
-    }
-    
-    // Add loading animations to elements
-    const animatedElements = document.querySelectorAll('.card, .brewing-icon, .hero-content, .article-card');
-    animatedElements.forEach(el => {
-        if (!el.classList.contains('loading')) {
-            el.classList.add('loading');
+        // Trigger initial animation check
+        setTimeout(() => {
+            initScrollAnimations();
+            animateOnScroll();
+        }, 100);
+        
+        // Auto-focus search input on articles page
+        if (window.location.pathname.includes('articulos.html') && searchInput) {
+            setTimeout(() => searchInput.focus(), 500);
         }
-    });
-    
-    // Trigger initial animation check
-    setTimeout(() => {
-        initScrollAnimations();
-        animateOnScroll();
-    }, 100);
-    
-    // Auto-focus search input on articles page
-    if (window.location.pathname.includes('articulos.html') && searchInput) {
-        setTimeout(() => searchInput.focus(), 500);
-    }
-    
-    // Initialize tooltips if Bootstrap is available
-    if (typeof bootstrap !== 'undefined') {
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
+        
+        // Initialize tooltips if Bootstrap is available
+        if (typeof bootstrap !== 'undefined') {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
+        
+        // Apply theme colors with delay to ensure all elements are loaded
+        setTimeout(() => {
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateContactFormColors(theme);
+            updateTextColors(theme);
+        }, 1000);
+        
+    } catch (error) {
+        console.log('Error en inicialización:', error);
     }
 });

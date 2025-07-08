@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Herramientas útiles para baristas: temporizador de café, calculadora de ratios y consejos prácticos.">
+    <meta name="keywords" content="temporizador café, calculadora café, herramientas barista, ratios café, timer café">
+    <meta name="author" content="Robert Sanchez - Café Mundo">
+    <meta name="robots" content="index, follow">
+    
+    <title>Herramientas de Café - Café Mundo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cup-hot-fill text-primary"></i>
+                <span class="logo-text">Café Mundo</span>
+            </a>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="dark-mode-toggle me-3">
+                <button id="darkModeToggle" class="btn btn-outline-secondary">
+                    <i class="bi bi-moon-fill"></i>
+                    <span class="dark-mode-text">MODO OSCURO 🌙</span>
+                </button>
+            </div>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articulos.html">Artículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="enlaces.html">Enlaces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="herramientas.html">Herramientas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactos.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="hover-link"><i class="bi bi-house-fill me-1"></i>Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Herramientas de Café</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Header Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4">
+                <i class="bi bi-tools me-3"></i>Herramientas de Café
+            </h1>
+            <p class="lead mb-0">Herramientas prácticas para mejorar tu experiencia cafetera</p>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Coffee Timer Tool -->
+                <div class="col-lg-6">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-header bg-warning text-dark">
+                            <h4 class="card-title mb-0">
+                                <i class="bi bi-stopwatch-fill me-2"></i>Temporizador de Café
+                            </h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="timer-display mb-4">
+                                <div id="timerDisplay" class="display-1 text-primary font-monospace mb-3">00:00</div>
+                                <small class="text-muted">Tiempo de preparación</small>
+                            </div>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <button id="startTimer" class="btn btn-success btn-lg w-100 hover-effect" onclick="startCoffeeTimer()">
+                                        <i class="bi bi-play-fill me-2"></i>Iniciar
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button id="stopTimer" class="btn btn-danger btn-lg w-100 hover-effect" onclick="stopCoffeeTimer()" disabled>
+                                        <i class="bi bi-stop-fill me-2"></i>Parar
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <strong>Tiempos recomendados:</strong><br>
+                                • Espresso: 25-30 segundos<br>
+                                • V60 Pour-over: 2:30-3:00 minutos<br>
+                                • Prensa Francesa: 4:00 minutos<br>
+                                • AeroPress: 1:30-2:00 minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee Calculator -->
+                <div class="col-lg-6">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-header bg-info text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="bi bi-calculator-fill me-2"></i>Calculadora de Ratios
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <label for="waterAmount" class="form-label">
+                                    <i class="bi bi-droplet-fill text-primary me-2"></i>Cantidad de Agua (ml)
+                                </label>
+                                <input type="number" class="form-control form-control-lg" id="waterAmount" 
+                                       placeholder="300" min="1" max="2000" value="300">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="coffeeRatio" class="form-label">
+                                    <i class="bi bi-cup-fill text-primary me-2"></i>Ratio (agua:café)
+                                </label>
+                                <select class="form-select form-select-lg" id="coffeeRatio">
+                                    <option value="14">1:14 (Muy Fuerte)</option>
+                                    <option value="15">1:15 (Fuerte)</option>
+                                    <option value="16" selected>1:16 (Equilibrado)</option>
+                                    <option value="17">1:17 (Suave)</option>
+                                    <option value="18">1:18 (Muy Suave)</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-lg w-100 hover-effect mb-4" onclick="calculateCoffeeRatio()">
+                                <i class="bi bi-calculator me-2"></i>Calcular Ratio
+                            </button>
+                            
+                            <div id="coffeeResult"></div>
+                            
+                            <div class="mt-4">
+                                <h6 class="text-muted">Guía de Ratios:</h6>
+                                <small class="text-muted">
+                                    • 1:14-1:15 = Sabor intenso y concentrado<br>
+                                    • 1:16-1:17 = Equilibrio perfecto<br>
+                                    • 1:18+ = Sabor suave y ligero
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee Tips Generator -->
+                <div class="col-lg-6">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="bi bi-lightbulb-fill me-2"></i>Consejos del Día
+                            </h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="tip-display mb-4">
+                                <i class="bi bi-cup-hot display-4 text-success mb-3"></i>
+                                <div id="tipContent" class="lead">
+                                    Haz clic en el botón para obtener un consejo útil sobre café
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-success btn-lg hover-effect" onclick="showRandomTip()">
+                                <i class="bi bi-shuffle me-2"></i>Nuevo Consejo
+                            </button>
+                            
+                            <div class="mt-4">
+                                <small class="text-muted">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Consejos basados en conocimiento profesional de baristas
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coffee Grind Guide -->
+                <div class="col-lg-6">
+                    <div class="card shadow-lg h-100">
+                        <div class="card-header bg-secondary text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="bi bi-gear-fill me-2"></i>Guía de Molienda
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Método</th>
+                                            <th>Molienda</th>
+                                            <th>Analogía</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Espresso</strong></td>
+                                            <td>Extra Fina</td>
+                                            <td>Harina</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Moka Pot</strong></td>
+                                            <td>Fina</td>
+                                            <td>Sal de mesa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>V60/Pour-over</strong></td>
+                                            <td>Media</td>
+                                            <td>Arena de playa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Prensa Francesa</strong></td>
+                                            <td>Gruesa</td>
+                                            <td>Sal gruesa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Cold Brew</strong></td>
+                                            <td>Extra Gruesa</td>
+                                            <td>Migajas de pan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                <strong>Tip:</strong> La consistencia de la molienda es más importante que el tamaño exacto.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temperature Guide -->
+                <div class="col-12">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-danger text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="bi bi-thermometer-half me-2"></i>Guía de Temperaturas
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-4">
+                                <div class="col-md-3 text-center">
+                                    <div class="temp-guide-item">
+                                        <i class="bi bi-thermometer-low display-4 text-info mb-2"></i>
+                                        <h5>85-90°C</h5>
+                                        <p class="text-muted">Cafés ligeros y florales</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="temp-guide-item">
+                                        <i class="bi bi-thermometer-half display-4 text-warning mb-2"></i>
+                                        <h5>90-94°C</h5>
+                                        <p class="text-muted">Pour-over estándar</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="temp-guide-item">
+                                        <i class="bi bi-thermometer-high display-4 text-danger mb-2"></i>
+                                        <h5>94-96°C</h5>
+                                        <p class="text-muted">Espresso y tuestes oscuros</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="temp-guide-item">
+                                        <i class="bi bi-snow display-4 text-primary mb-2"></i>
+                                        <h5>Temperatura ambiente</h5>
+                                        <p class="text-muted">Cold Brew</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-4">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <strong>Consejo:</strong> Si no tienes termómetro, deja reposar el agua hervida por 30-60 segundos para alcanzar la temperatura ideal.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Reference Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Referencia Rápida</h2>
+                <p class="lead">Datos esenciales para el barista</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 shadow hover-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-clock display-3 text-primary mb-3"></i>
+                            <h5>Tiempos de Extracción</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Espresso:</strong> 25-30 seg</li>
+                                <li><strong>V60:</strong> 2:30-3:00 min</li>
+                                <li><strong>Prensa:</strong> 4:00 min</li>
+                                <li><strong>AeroPress:</strong> 1:30-2:00 min</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100 shadow hover-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-cup display-3 text-success mb-3"></i>
+                            <h5>Ratios Populares</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Espresso:</strong> 1:2 - 1:2.5</li>
+                                <li><strong>Pour-over:</strong> 1:15 - 1:17</li>
+                                <li><strong>Prensa:</strong> 1:15 - 1:16</li>
+                                <li><strong>Cold Brew:</strong> 1:8 - 1:10</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100 shadow hover-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-thermometer display-3 text-danger mb-3"></i>
+                            <h5>Temperaturas</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Espresso:</strong> 94-96°C</li>
+                                <li><strong>Pour-over:</strong> 90-94°C</li>
+                                <li><strong>Prensa:</strong> 90-95°C</li>
+                                <li><strong>Cold Brew:</strong> Ambiente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="display-4 fw-bold mb-4">¿Quieres Aprender Más?</h2>
+            <p class="lead mb-4">Explora nuestros artículos detallados sobre técnicas de preparación</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="articulos.html" class="btn btn-light btn-lg hover-effect">
+                    <i class="bi bi-book me-2"></i>Ver Artículos
+                </a>
+                <a href="contactos.html" class="btn btn-outline-light btn-lg hover-effect">
+                    <i class="bi bi-envelope me-2"></i>Contactar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-cup-hot-fill me-2"></i>Café Mundo</h5>
+                    <p>Tu guía completa para explorar el fascinante mundo del café.</p>
+                    <p class="mb-2"><strong>Creado por:</strong> Robert Sanchez</p>
+                    <p class="mb-0"><small>Proyecto académico - UNPHU</small></p>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Enlaces Útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none hover-link">Inicio</a></li>
+                        <li><a href="articulos.html" class="text-light text-decoration-none hover-link">Artículos</a></li>
+                        <li><a href="enlaces.html" class="text-light text-decoration-none hover-link">Enlaces</a></li>
+                        <li><a href="herramientas.html" class="text-light text-decoration-none hover-link">Herramientas</a></li>
+                        <li><a href="contactos.html" class="text-light text-decoration-none hover-link">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('facebook')"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3 hover-social" onclick="shareOnSocial('twitter')"><i class="bi bi-twitter"></i></a>
+                        <a href="https://instagram.com/robertsanchezg" target="_blank" class="text-light me-3 hover-social"><i class="bi bi-instagram"></i></a>
+                        <a href="https://wa.me/18094079575" target="_blank" class="text-light me-3 hover-social"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                    
+                    <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#privacyModal">
+                        <i class="bi bi-shield-check me-2"></i>Políticas de Privacidad
+                    </button>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 Café Mundo. Todos los derechos reservados.</p>
+                <small class="text-muted">Proyecto desarrollado por Robert Sanchez - Universidad Nacional Pedro Henríquez Ureña</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-shield-check text-success me-2"></i>
+                        Políticas de Privacidad
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Recopilación de Información</h6>
+                    <p>En Café Mundo, respetamos tu privacidad. Esta página web es únicamente informativa y educativa sobre el mundo del café.</p>
+                    
+                    <h6>Uso de la Información</h6>
+                    <p>No recopilamos información personal de los usuarios. El formulario de contacto utiliza tu cliente de correo local.</p>
+                    
+                    <h6>Cookies</h6>
+                    <p>Utilizamos únicamente cookies técnicas necesarias para el funcionamiento del sitio, como las preferencias del modo oscuro.</p>
+                    
+                    <h6>Enlaces Externos</h6>
+                    <p>Nuestro sitio puede contener enlaces a recursos externos. No nos hacemos responsables de las políticas de privacidad de terceros.</p>
+                    
+                    <h6>Contacto</h6>
+                    <p>Si tienes preguntas sobre estas políticas, puedes contactarnos a través del formulario de contacto en <a href="mailto:rs24-0177@unphu.edu.do">rs24-0177@unphu.edu.do</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
