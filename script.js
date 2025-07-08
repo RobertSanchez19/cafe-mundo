@@ -26,7 +26,7 @@ function updateContactFormColors(theme) {
         
         const currentColors = colors[theme];
         
-        // Actualizar inputs del formulario (solo si existen)
+        // Actualizar inputs del formulario /Intento de correccion uno/ IDEA DE ACTUALIZAR TODO SI EXISTE
         const formInputs = document.querySelectorAll('.form-control, .form-select');
         formInputs.forEach(input => {
             if (input) {
@@ -36,7 +36,7 @@ function updateContactFormColors(theme) {
             }
         });
         
-        // Actualizar labels (solo si existen)
+        // Actualizar labels 
         const formLabels = document.querySelectorAll('.form-label, label, .form-check-label');
         formLabels.forEach(label => {
             if (label) {
@@ -44,7 +44,7 @@ function updateContactFormColors(theme) {
             }
         });
         
-        // Actualizar texto de ayuda (solo si existen)
+        // Actualizar texto de ayuda 
         const helpTexts = document.querySelectorAll('.form-text, .small, .text-muted');
         helpTexts.forEach(text => {
             if (text) {
@@ -52,7 +52,7 @@ function updateContactFormColors(theme) {
             }
         });
         
-        // Actualizar elementos de contacto (solo si existen)
+        // Actualizar elementos de contacto 
         const contactItems = document.querySelectorAll('.contact-item, .contact-item div, .contact-item strong');
         contactItems.forEach(item => {
             if (item) {
@@ -60,7 +60,7 @@ function updateContactFormColors(theme) {
             }
         });
         
-        // Actualizar cards (solo si existen)
+        // Actualizar cards 
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             if (card) {
@@ -69,7 +69,7 @@ function updateContactFormColors(theme) {
             }
         });
         
-        // Actualizar texto en cards (solo si existen)
+        // Actualizar texto en cards 
         const cardTexts = document.querySelectorAll('.card-body, .card-text, .card-title, .card-footer');
         cardTexts.forEach(element => {
             if (element) {
@@ -91,7 +91,7 @@ function updateTextColors(theme) {
         const textColor = theme === 'dark' ? '#e9ecef' : '#333';
         const mutedColor = theme === 'dark' ? '#adb5bd' : '#6c757d';
         
-        // Actualizar textos generales (solo si existen)
+        // Actualizar textos generales 
         const textElements = document.querySelectorAll(
             '.card-text, .article-meta, .card-body p, .card-body h5, .card-body h6, ' +
             '.modal-body p, .modal-body h4, .modal-body h5, .modal-body h6, .modal-body li, ' +
@@ -108,7 +108,7 @@ function updateTextColors(theme) {
             }
         });
         
-        // Actualizar elementos de modales (solo si existen)
+        // Actualizar elementos de modales 
         const modalElements = document.querySelectorAll('.modal-body *');
         modalElements.forEach(element => {
             if (element && (element.tagName === 'P' || element.tagName === 'LI' || 
